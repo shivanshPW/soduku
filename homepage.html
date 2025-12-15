@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="home-container">
+        <div class="hero-section">
+            <h1 class="main-title">Sudoku</h1>
+            <p class="subtitle">Challenge your mind</p>
+            
+            <div class="home-actions">
+                <a href="index.html" class="primary-btn large-btn">Play Game</a>
+                <button id="how-to-play-btn" class="secondary-btn large-btn">How to Play</button>
+            </div>
+        </div>
+
+        <div id="how-to-play-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>How to Play</h2>
+                    <button id="close-modal-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction-step">
+                        <span class="step-number">1</span>
+                        <p>Fill the grid so that every row, column, and 3x3 box contains the digits 1 through 9.</p>
+                    </div>
+                    <div class="instruction-step">
+                        <span class="step-number">2</span>
+                        <p>Each number can only appear once in each row, column, and box.</p>
+                    </div>
+                    <div class="instruction-step">
+                        <span class="step-number">3</span>
+                        <p>Use logic to deduce the missing numbers. No guessing required!</p>
+                    </div>
+                    <div class="instruction-step">
+                        <span class="step-number">4</span>
+                        <p>Use <strong>Notes</strong> mode to jot down possibilities if you get stuck.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple script for the modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('how-to-play-modal');
+            const btn = document.getElementById('how-to-play-btn');
+            const closeBtn = document.getElementById('close-modal-btn');
+
+            // Check for dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+
+            btn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
