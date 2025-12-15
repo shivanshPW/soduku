@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="bg-numbers" class="bg-numbers"></div>
     <div class="home-container">
         <div class="hero-section">
             <h1 class="main-title">Sudoku</h1>
@@ -72,6 +73,39 @@
                     modal.classList.add('hidden');
                 }
             });
+
+            // Background Numbers Animation
+            const bgContainer = document.getElementById('bg-numbers');
+            const gridSize = 40; // Must match CSS background-size
+
+            function spawnNumber() {
+                const num = Math.floor(Math.random() * 9) + 1;
+                const el = document.createElement('div');
+                el.classList.add('bg-number');
+                el.textContent = num;
+
+                // Random grid position
+                const cols = Math.ceil(window.innerWidth / gridSize);
+                const rows = Math.ceil(window.innerHeight / gridSize);
+                const c = Math.floor(Math.random() * cols);
+                const r = Math.floor(Math.random() * rows);
+
+                el.style.left = (c * gridSize) + 'px';
+                el.style.top = (r * gridSize) + 'px';
+                
+                // Random animation duration
+                const duration = 2000 + Math.random() * 3000;
+                el.style.animation = `fadeNumber ${duration}ms ease-in-out forwards`;
+
+                bgContainer.appendChild(el);
+
+                setTimeout(() => {
+                    el.remove();
+                }, duration);
+            }
+
+            // Spawn a number every 300ms
+            setInterval(spawnNumber, 300);
         });
     </script>
 </body>
